@@ -65,9 +65,11 @@ def append_to_csv(data1, data2, filename="data.csv"):
 def plot_data(filename="data.csv"):
     now = datetime.datetime.now()
     plot_filename = now.strftime("%Y-%m-%d-%a") + '.png'
-    plt_title=now.strftime("%Y-%m-%d") + " Gym and Swimming Pool Attendance Over Time"
-    df = pd.read_csv(filename, parse_dates=['Timestamp'])
-    #df = pd.read_csv(filename, parse_dates=['Timestamp'])
+    plot_title = now.strftime("%Y-%m-%d") + " Gym and Swimming Pool Attendance Over Time"
+
+    # Read and filter data for the current date
+    df = pd.read_csv(filename)
+    df['Timestamp'] = pd.to_datetime(df['Timestamp'], format='%Y-%m-%d %H:%M')  # Adjust the format as per your CSV
     df['Date'] = df['Timestamp'].dt.date
     today_data = df[df['Date'] == now.date()]
 
@@ -80,12 +82,13 @@ def plot_data(filename="data.csv"):
 
     plt.xlabel('Time')
     plt.ylabel('Attendance')
-    plt.title(plt_title)
+    plt.title(plot_title)
     plt.legend()
     plt.xticks(rotation=45)  # Rotate labels for better readability
     plt.tight_layout()  # Adjust layout
     plt.savefig(plot_filename)
     plt.show()
+
 # Main loop
 last_scraped_time = None
 while True:
@@ -101,9 +104,11 @@ while True:
             print(Swimming)
             print(Gym)
     # Plot at 22:00
-    if datetime.datetime.now().time() >= datetime.time(22, 0) and (datetime.datetime.now() - last_scraped_time).seconds >= 900:
-        print("plotting")
+    
+    today_filename = datetime.datetime.now().strftime("%Y-%m-%d-%a") + '.png'
+    if not os.path.isfile(today_filename) and (datetime.datetime.now() - last_scraped_time).seconds >= 900:
         plot_data()
-        break  # End the script after plotting or modify as needed
-    #print("sleeping for 60 sec")
-    time.sleep(60)  # Sleep for a minute before next check
+        break  # or continue based on your requirement
+
+    time.sleep(60)
+    
