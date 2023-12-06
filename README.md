@@ -1,6 +1,6 @@
 # NTU-Sport-Center Gym and Swimming Pool Attendance web crawler
 
-台大綜合體育館場館人數爬蟲
+台大綜合體育館場館人數爬蟲，自06:00到21:30，每五分鐘抓取場館人數，22:00會畫出該日的人數折線圖
 
 It can run on a Raspberry Pi 4B, recording the NTU Sport Center attendance from 06:00-21:30.
 
