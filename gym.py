@@ -100,7 +100,7 @@ while True:
             Gym="Gym: "+str(data2)
             print(Swimming)
             print(Gym)
-    # Plot at 21:00
+    # Plot at 22:00
     if datetime.datetime.now().time() >= datetime.time(22, 0) and (datetime.datetime.now() - last_scraped_time).seconds >= 900:
         print("plotting")
         plot_data()
