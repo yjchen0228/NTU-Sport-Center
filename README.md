@@ -1,4 +1,4 @@
-![2023-12-29-Fri](https://github.com/yjchen0228/NTU_Sport_Center/assets/107047202/54b362c1-6a56-47ee-8225-0b32014b88bd)
+
 # NTU-Sport-Center 台大綜合體育館(新體) Gym and Swimming Pool Attendance web crawler
 
 [台大綜合體育館]( <https://rent.pe.ntu.edu.tw/> "Title") 場館人數爬蟲，自06:00到21:30，每五分鐘抓取場館人數，22:00會畫出該日的人數折線圖
